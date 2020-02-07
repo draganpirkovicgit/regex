@@ -1,1 +1,31 @@
 
+Problem:
+Extract from relative path file/subdirectory path
+
+BBF/dependencies/dependencies.xml -> /dependencies/dependencies.xml
+BBF/dependencies -> /dependencies
+BBF/dependencies/user%dragan/dependencies.xml -> /user%dragan/dependencies/dependencies.xml
+
+Relative path starts with parent directory and goal is to get subdirectory path
+
+Solution:
+
+^([A-Z a-z 0-9 \_\.\!\@\#\%\&\^\$\(\)\-\+\{\}\[\]\;\'\,\.\~\`]+)(.*)$
+
+Explanation:
+
+This regex will match string that has two substrings.
+First (subtring on start of string) will contain alphanumerical characters and special characters that are allowed to be used in filenames:
+_ . ! @ # % &amp; ^ $ ( ) - + { } [ ] ; ' , . ~ `
+Second (subtring on the end of string) will contain any character and any number of characters.
+
+We will get our goal by replace string with second group.($2)
+
+WARNING:
+
+Be aware that special characters must be escaped.
+
+This expression can be different for some environments.
+
+For example in ant xml file you would have to escape $ sign with $$
+For xml files instead of & you will have to use &amp;
