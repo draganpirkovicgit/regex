@@ -1,2 +1,14 @@
+Find 
 (.*)(\.steps\.)([A-Z a-z 0-9]+)(.*)(\s*)(.*)
+replace
 <step name="\3">\n\1\2\3\4\5\6\n</step>
+
+Find
+(.*)(\.Track2)(.*)(\s*)(.*)
+replace
+<track_2>\n\1\2\3\4\5\n</track_2>
+
+find
+(.*)(\.)(.*Ctr.*)(\;)(.*)(\s*)(.*)
+replace
+<controller name="\3">\n\1\2\3\4\5\6\7\n</controller>
